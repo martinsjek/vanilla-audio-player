@@ -27,6 +27,11 @@ new AudioPlayer('.player-1',[
 	}  
 ]); 
 ```
+
+#### Use Vanilla lightbox styles (scss):
+`@import "~vanilla-audio-player/src/scss/app.scss";`
+
+
 ## Options
 
 | Name  | Meaning  |
