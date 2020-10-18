@@ -1,0 +1,15 @@
+{
+  "name": "vanilla-audio-player",
+  "version": "1.0.0",
+  "description": "Vanilla Audio player",
+  "main": "src/js/app.js",
+  "author": "martinsjek",
+  "license": "ISC",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "audio",
+    "player"
+  ]
+}
