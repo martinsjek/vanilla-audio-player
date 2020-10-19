@@ -1,6 +1,6 @@
 {
   "name": "vanilla-audio-player",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Vanilla Audio player",
   "main": "src/js/app.js",
   "author": "martinsjek",
@@ -11,5 +11,9 @@
   "keywords": [
     "audio",
     "player"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/martinsjek/vanilla-audio-player"
+  }
 }

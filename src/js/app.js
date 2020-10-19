@@ -1,13 +1,13 @@
 import Polyfills from "./modules/polyfills";
 
 export default class AudioPlayer{
-    constructor(selector, tracks) {
+    constructor(selector, tracks, options) {
         let polyFills = new Polyfills();
         this.selectedTrack = 0;
         this.audio = null;
         this.audioPlayer = document.querySelector(selector);
         this.tracks = tracks;
-        this.paused = true;
+        this.paused = !(options && options.autoplay);
         this.initPlayerDom();
         this.initPlayer(tracks);
         this.initActions();
@@ -57,11 +57,13 @@ export default class AudioPlayer{
 
         //check audio percentage and update time accordingly
         setInterval(() => {
-            const progressBar = this.audioPlayer.querySelector(".progress");
-            progressBar.style.width = this.audio.currentTime / this.audio.duration * 100 + "%";
-            this.audioPlayer.querySelector(".time .current").textContent = this.getTimeCodeFromNum(this.audio.currentTime);
-            if(this.audio.currentTime >= this.audio.duration){
-                this.playNext();
+            if(this.audio){
+                const progressBar = this.audioPlayer.querySelector(".progress");
+                progressBar.style.width = this.audio.currentTime / this.audio.duration * 100 + "%";
+                this.audioPlayer.querySelector(".time .current").textContent = this.getTimeCodeFromNum(this.audio.currentTime);
+                if(this.audio.currentTime >= this.audio.duration){
+                    this.playNext();
+                }
             }
         }, 500);
     }
@@ -89,6 +91,7 @@ export default class AudioPlayer{
         this.audio = new Audio(tracks[this.selectedTrack].src);
 
         if(this.audio && !this.paused){
+            this.checkPlayStatus();
             this.audio.play();
         }
 
@@ -147,5 +150,15 @@ export default class AudioPlayer{
             this.selectedTrack = trackLength;
         }
         this.initPlayer(this.tracks);
+    }
+
+    destroy(){
+        this.selectedTrack = 0;
+        this.audio.pause();
+        this.audio = null;
+        this.audioPlayer.innerHTML = '';
+        this.tracks = null;
+        this.paused = true;
+        this.autoplay = false;
     }
 }
