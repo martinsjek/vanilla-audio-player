@@ -1,6 +1,6 @@
 {
   "name": "vanilla-audio-player",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Vanilla Audio player",
   "main": "src/js/app.js",
   "author": "martinsjek",

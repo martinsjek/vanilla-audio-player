@@ -11,6 +11,11 @@ export default class AudioPlayer{
         this.initPlayerDom();
         this.initPlayer(tracks);
         this.initActions();
+
+        // add track lists if options.trackList = true
+        if(options && options.trackList){
+            this.addTrackList();
+        }
     }
 
     initActions(){
@@ -160,5 +165,27 @@ export default class AudioPlayer{
         this.tracks = null;
         this.paused = true;
         this.autoplay = false;
+    }
+
+    addTrackList(){
+        let trackListHtml = '';
+
+        for(let i = 0; i < this.tracks.length; i++){
+            trackListHtml += `<div class="item" track-id="${i}">${this.tracks[i].name}</div>`;
+        }
+
+        const trackList = document.createElement('div');
+        trackList.classList.add('track-list');
+        trackList.innerHTML = trackListHtml;
+        this.audioPlayer.appendChild(trackList);
+
+        let trackListItems = this.audioPlayer.querySelectorAll('.track-list .item');
+
+        for(let i = 0; i < trackListItems.length; i++){
+            trackListItems[i].addEventListener('click', () => {
+                this.selectedTrack = trackListItems[i].getAttribute('track-id');
+                this.initPlayer(this.tracks);
+            })
+        }
     }
 }

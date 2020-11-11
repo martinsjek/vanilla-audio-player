@@ -48,6 +48,7 @@ new AudioPlayer('.player-1',[
 | Name  | Meaning  |
 |--|--|  
 | autoplay | Sets autoplay for player (only works if user have already interacted with site) |
+| trackList | Adds track list to player |
   
   
 ## Track Options
@@ -62,4 +63,6 @@ new AudioPlayer('.player-1',[
 | Name  | Meaning  |  
 |--|--|  
 | destroy() | Destroy AudioPlayer instance |  
+
+![](Screenshot.png)
 
